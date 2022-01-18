@@ -4,31 +4,31 @@ plugins {
 }
 
 android {
-    compileSdk 30
+    compileSdkVersion 30
 
     defaultConfig {
-        minSdk 21
-        targetSdk 30
-        versionCode 1
-        versionName "1.0"
-
-        consumerProguardFiles "consumer-rules.pro"
+        minSdkVersion 18
+        targetSdkVersion 30
+        versionCode 12
+        versionName "2.3.4"
     }
-
     buildTypes {
+        debug {
+            buildConfigField "String", "VERSION_NAME", "\"${defaultConfig.versionName}\""
+        }
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            buildConfigField "String", "VERSION_NAME", "\"${defaultConfig.versionName}\""
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
 dependencies {
-
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
 }
